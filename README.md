@@ -19,8 +19,8 @@ REACT_APP_API_URL_PROD=https://<production_url>/api/blogs<br><br>
     * Make sure you’re in the root directory
     
 # Production
-1. Set up your .env file in the root directory. Fill up the .env with your postgreSQL credentials and port number. It should look something like this but with your info:
-PORT = 8000<br><br>
+1. Set up your .env file in the root directory. Fill up the .env with your postgreSQL credentials and port number. It should look something like this but with your info:<br><br>
+PORT = 8000<br>
 USERNAME = userName<br>
 HOST = hostName<br>
 DB = dbName<br>
