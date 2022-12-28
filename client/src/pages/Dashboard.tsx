@@ -55,7 +55,7 @@ const Dashboard = () => {
                             ))}
                 </Grid>
                 <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-                    <Pagination style={{ margin: '0.8em' }} count={pages} defaultPage={page} onChange={handleChange}/>
+                    <Pagination style={{ margin: '0.8em' }} count={pages} defaultPage={1} page={page} onChange={handleChange}/>
                 </Box> 
 
                 
