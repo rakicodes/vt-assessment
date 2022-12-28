@@ -12,6 +12,8 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
 import Spinner from '../components/Spinner'
+import NotFound from './NotFound'
+
 
 const Blog = function() {
   const dispatch = useAppDispatch();
@@ -50,9 +52,7 @@ const Blog = function() {
     <>
       <Container maxWidth="sm">
         { blogs.length===0 ?
-          <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: '1em' }}>
-            <Typography variant="h4" component="h4">Page Not Found</Typography> :
-          </Box> :
+          <NotFound /> :
           <Stack spacing={2}>
             <img src={blogs[0].image} alt={blogs[0].title}/>
             <span>Published at {getFormattedDate(blogs[0].published_at)}</span>
