@@ -32,5 +32,3 @@ REACT_APP_API_URL_PROD=https://<production_url>/api/blogs<br><br>
 3. To create your production build for the client, run `npm run build`
     * Make sure you’re in the client folder
 4. To create and run your production build for the server, run `npm build && npm start` in the root directory
-
-Check out the live site here: [vt-assessment.netlify.app](vt-assessment.netlify.app)
