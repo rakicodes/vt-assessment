@@ -7,9 +7,11 @@ import parse from 'html-react-parser';
 import { getBlog, reset } from '../features/blog/blogSlice'
 
 import Container from '@mui/material/Container';
-import CircularProgress from '@mui/material/CircularProgress';
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+
+import Spinner from '../components/Spinner'
 
 const Blog = function() {
   const dispatch = useAppDispatch();
@@ -37,13 +39,19 @@ const Blog = function() {
     });  
   }
 
+  if (isLoading) {
+    return (
+      <Spinner />
+    )
+  }
+
 
   return (
     <>
       <Container maxWidth="sm">
-        { isLoading || blogs.length===0 ?
-          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-              <CircularProgress />
+        { blogs.length===0 ?
+          <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: '1em' }}>
+            <Typography variant="h4" component="h4">Page Not Found</Typography> :
           </Box> :
           <Stack spacing={2}>
             <img src={blogs[0].image} alt={blogs[0].title}/>

@@ -15,7 +15,7 @@ function App() {
               <Header />
               <Routes>
                 <Route path="/" element={<Dashboard />}/>
-                <Route path="/:slug" element={<Blog />}/> { /* what if blog doesn't exist? */ }
+                <Route path="/:slug" element={<Blog />}/>
               </Routes>
           </>
       </Router>
