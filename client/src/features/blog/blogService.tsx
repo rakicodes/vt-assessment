@@ -9,8 +9,16 @@ const getBlogs = async (page: any) => {
     return response.data
 }
 
+// Get blog
+const getBlog = async (slug: any) => {
+    const response = await axios.get(`${API_URL}/${slug}`)
+
+    return response.data
+}
+
 const blogService = {
-    getBlogs
+    getBlogs,
+    getBlog
 }
 
 export default blogService

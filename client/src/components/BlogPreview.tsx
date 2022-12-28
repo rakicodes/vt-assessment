@@ -10,7 +10,6 @@ interface Blog {
     title: string;
     slug: string;
     image: string;
-    publishedAt: string;
 }
 
 const BlogPreview = (props:Blog) => {
