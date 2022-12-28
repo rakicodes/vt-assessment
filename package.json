@@ -4,6 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "tsc",
+    "start": "node build/server.js",
+    "buildClient": "npm run build --prefix client",
     "serverDev": "npx nodemon",
     "clientDev": "npm start --prefix client"
   },
