@@ -4,8 +4,6 @@ import blogService from './blogService'
 type State = {
     blogs: any[];
     pages: number;
-    previousPage: any;
-    nextPage: any;
     isError: boolean;
     isSuccess: boolean;
     isLoading: boolean;
@@ -15,8 +13,6 @@ type State = {
 const initialState: State = {
     blogs: [],
     pages: 0,
-    previousPage: {},
-    nextPage: {},
     isError: false,
     isSuccess: false,
     isLoading: false,
@@ -27,6 +23,17 @@ const initialState: State = {
 export const getBlogs = createAsyncThunk('blog/getAll', async (page: any, thunkAPI) => {
     try {
         return await blogService.getBlogs(page);
+    } catch (error: any) {
+        const message = (error.respose && error.response.data && error.response.data.message) || error.message || error.toString();
+        return thunkAPI.rejectWithValue(message);
+
+    }
+})
+
+// get blog
+export const getBlog = createAsyncThunk('blog/getOne', async (slug: any, thunkAPI) => {
+    try {
+        return await blogService.getBlog(slug);
     } catch (error: any) {
         const message = (error.respose && error.response.data && error.response.data.message) || error.message || error.toString();
         return thunkAPI.rejectWithValue(message);
@@ -50,10 +57,21 @@ export const blogSlice = createSlice({
                 state.isSuccess = true
                 state.blogs = action.payload.blogs
                 state.pages = action.payload.pages
-                state.nextPage = action.payload.next
-                state.previousPage = action.payload.previous
             })
             .addCase(getBlogs.rejected, (state,action) => {
+                state.isLoading = false
+                state.isError = true
+                state.message = typeof action.payload === "string" ? action.payload : 'Error'
+            })
+            .addCase(getBlog.pending, (state) => {
+                state.isLoading = true
+            })
+            .addCase(getBlog.fulfilled, (state,action) => {
+                state.isLoading = false
+                state.isSuccess = true
+                state.blogs = action.payload
+            })
+            .addCase(getBlog.rejected, (state,action) => {
                 state.isLoading = false
                 state.isError = true
                 state.message = typeof action.payload === "string" ? action.payload : 'Error'

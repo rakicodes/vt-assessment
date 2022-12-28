@@ -3,8 +3,6 @@ import { Request, Response } from 'express';
 type Page = {
     blogs: any;
     pages: number;
-    previous: boolean;
-    next: boolean;
 }
 
 const LIMIT: number = 6;
@@ -36,15 +34,30 @@ const getBlogs = async (req: Request, res: Response) => {
 
         let pageData: Page = {
             blogs: results.rows,
-            pages: results.rows.length > 0 ? Math.ceil(results.rows[0].full_count / LIMIT) : 0,
-            previous: parseInt(currPage)-1 > 0,
-            next: results.rows.length > 0 && parseInt(results.rows[0].full_count) > (offset+LIMIT)
+            pages: results.rows.length > 0 ? Math.ceil(results.rows[0].full_count / LIMIT) : 0
         }
 
         res.status(200).json(pageData)
     })
 }
 
+// @desc    get blog
+// @route   GET /api/blogs/:slug
+// @access  Public
+const getBlog = async (req: Request, res: Response) => {
+    const slug: string = req.params.slug
+
+    const queryOrders: string = `SELECT * FROM blogs WHERE slug = '${slug}';`;
+    pool.query(queryOrders, (error: any, results: any) => {
+        if(error) {
+            throw error
+        }
+
+        res.status(200).json(results.rows)
+    })
+}
+
 module.exports = {
-    getBlogs
+    getBlogs,
+    getBlog
 }

@@ -18,7 +18,7 @@ const Dashboard = () => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
 
-    const { blogs, pages, nextPage, previousPage, isLoading, isError, isSuccess, message } = useAppSelector((state) => state.blogs)
+    const { blogs, pages, isLoading, isError, isSuccess, message } = useAppSelector((state) => state.blogs)
   
     useEffect(() => {
       if (isError) {
@@ -49,7 +49,7 @@ const Dashboard = () => {
                         <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 2, sm: 8, md: 12 }}>
                             {blogs.map((blog: any) => (
                                 <Grid item xs={2} sm={4} md={4} key={blog.id}>
-                                    <BlogPreview key={blog.id} title={blog.title} slug={blog.slug} image={blog.image} publishedAt={blog.publishedAt}/>
+                                    <BlogPreview key={blog.id} title={blog.title} slug={blog.slug} image={blog.image}/>
                                 </Grid>
                             ))}
                         </Grid>
