@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import CssBaseline from '@mui/material/CssBaseline';
 
+import Header from './components/Header';
 import Dashboard from './pages/Dashboard'
 import Blog from './pages/Blog'
 import './App.css';
@@ -11,6 +12,7 @@ function App() {
       <CssBaseline />
       <Router>
           <>
+              <Header />
               <Routes>
                 <Route path="/" element={<Dashboard />}/>
                 <Route path="/:slug" element={<Blog />}/> { /* what if blog doesn't exist? */ }
