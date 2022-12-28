@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:8000/api/blogs'
+const API_URL = process.env.NODE_ENV === 'production' ? 
+process.env.REACT_APP_API_URL_PROD : 
+process.env.REACT_APP_API_URL_DEV;
 
 // Get all blogs
 const getBlogs = async (page: any) => {

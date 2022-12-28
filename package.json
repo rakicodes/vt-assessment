@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start:dev": "npx nodemon",
+    "serverDev": "npx nodemon",
     "clientDev": "npm start --prefix client"
   },
   "author": "",
